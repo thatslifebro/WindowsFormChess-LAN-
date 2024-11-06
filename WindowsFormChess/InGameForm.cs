@@ -67,7 +67,7 @@ namespace Sakk_Alkalmazás_2._0
         public int[,] WhiteStaleArray = new int[8, 8];
         public int[,] BlackStaleArray = new int[8, 8];
 
-        public InGameForm(bool SingleGame, bool isHost, string ip = null)
+        public InGameForm(bool SingleGame)
         {
             InitializeComponent();
             singleGame = SingleGame;
@@ -76,25 +76,17 @@ namespace Sakk_Alkalmazás_2._0
             {
                 MessageReceiver.DoWork += MessageReceiver_DoWork;
 
-                if (isHost)
+
+                try
                 {
-                    server = new TcpListener(System.Net.IPAddress.Any, 5732);
-                    server.Start();
-                    sock = server.AcceptSocket();
+                    client = new TcpClient("localhost", 32452);
+                    sock = client.Client;
+                    MessageReceiver.RunWorkerAsync();
                 }
-                else
+                catch (Exception ex)
                 {
-                    try
-                    {
-                        client = new TcpClient(ip, 5732);
-                        sock = client.Client;
-                        MessageReceiver.RunWorkerAsync();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                        Close();
-                    }
+                    MessageBox.Show(ex.Message);
+                    Close();
                 }
             }
 

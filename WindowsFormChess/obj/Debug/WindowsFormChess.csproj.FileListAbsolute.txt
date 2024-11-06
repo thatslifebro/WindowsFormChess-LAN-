@@ -37,3 +37,41 @@ C:\Users\csuka\source\repos\WindowsFormChess\WindowsFormChess\obj\Debug\WindowsF
 C:\Users\csuka\source\repos\WindowsFormChess\WindowsFormChess\obj\Debug\WindowsFormChess.csproj.CoreCompileInputs.cache
 C:\Users\csuka\source\repos\WindowsFormChess\WindowsFormChess\obj\Debug\Sakk Alkalmazás 2.0.exe
 C:\Users\csuka\source\repos\WindowsFormChess\WindowsFormChess\obj\Debug\Sakk Alkalmazás 2.0.pdb
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\Sakk Alkalmazás 2.0.exe.config
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\Sakk Alkalmazás 2.0.exe
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\Sakk Alkalmazás 2.0.pdb
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\obj\Debug\WindowsFormChess.csproj.AssemblyReference.cache
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\obj\Debug\Sakk_Alkalmazás_2._0.ConnectionForm.resources
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\obj\Debug\Sakk_Alkalmazás_2._0.InGameForm.resources
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\obj\Debug\Sakk_Alkalmazás_2._0.MainMenu.resources
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\obj\Debug\Sakk_Alkalmazás_2._0.PromotionForm.resources
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\obj\Debug\Sakk_Alkalmazás_2._0.Properties.Resources.resources
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\obj\Debug\WindowsFormChess.csproj.GenerateResource.cache
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\obj\Debug\WindowsFormChess.csproj.CoreCompileInputs.cache
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\obj\Debug\Sakk Alkalmazás 2.0.exe
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\obj\Debug\Sakk Alkalmazás 2.0.pdb
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\obj\Debug\WindowsFormChess.csproj.SuggestedBindingRedirects.cache
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\obj\Debug\Sakk Alkalmazás 2.0.exe.config
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\obj\Debug\Sakk_Alkalmazás_2._0.Lobby.resources
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\MessagePack.Annotations.dll
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\MessagePack.dll
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\Microsoft.NET.StringTools.dll
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\System.Buffers.dll
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\System.Collections.Immutable.dll
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\System.Memory.dll
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\MessagePack.xml
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\MessagePack.Annotations.xml
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\Microsoft.NET.StringTools.pdb
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\Microsoft.NET.StringTools.xml
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\System.Buffers.xml
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\System.Collections.Immutable.xml
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\System.Memory.xml
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\obj\Debug\WindowsFormChess.csproj.CopyComplete
