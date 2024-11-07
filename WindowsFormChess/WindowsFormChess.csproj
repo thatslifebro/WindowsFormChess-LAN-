@@ -101,6 +101,12 @@
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="PacketDefine.cs" />
+    <Compile Include="Popup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup.Designer.cs">
+      <DependentUpon>Popup.cs</DependentUpon>
+    </Compile>
     <Compile Include="PromotionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup.resx">
+      <DependentUpon>Popup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PromotionForm.resx">
       <DependentUpon>PromotionForm.cs</DependentUpon>

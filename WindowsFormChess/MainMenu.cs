@@ -20,7 +20,7 @@ namespace Sakk_Alkalmazás_2._0
         private void Start_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            InGameForm inGame = new InGameForm(true);
+            InGameForm inGame = new InGameForm(true, null, true);
             inGame.ShowDialog();
             this.Close();
         }

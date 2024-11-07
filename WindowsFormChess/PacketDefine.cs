@@ -92,4 +92,99 @@ namespace Sakk_Alkalmazás_2._0
         [Key(0)]
         public string Chat;
     }
+
+    [MessagePackObject]
+    public class PKTReqEnterGameRoom
+    {
+        [Key(0)]
+        public ErrorCode Result;
+
+        [Key(1)]
+        public Int16 RoomID;
+    }
+
+    [MessagePackObject]
+    public class PKTResEnterGameRoom
+    {
+        [Key(0)]
+        public ErrorCode Result;
+    }
+
+    [MessagePackObject]
+    public class PKTResLeaveGameRoom
+    {
+        [Key(0)]
+        public ErrorCode Result;
+    }
+
+    [MessagePackObject]
+    public class PKTNtfGameStart
+    {
+        [Key(0)]
+        public List<(string, string)> UserInfos;
+    }
+
+
+    [MessagePackObject]
+    public class PKTReqMovePiece //todo : 규칙을 서버에서 하면 beforex,y, after xy만 받을듯.
+    {
+        [Key(0)]
+        public SByte LastMovedPiece;
+
+        [Key(1)]
+        public SByte BeforeMove_X;
+
+        [Key(2)]
+        public SByte BeforeMove_Y;
+
+        [Key(3)]
+        public SByte AfterMove_X;
+
+        [Key(4)]
+        public SByte AfterMove_Y;
+
+        [Key(5)]
+        public SByte Moves;
+
+        [Key(6)]
+        public SByte Castling;
+
+        [Key(7)]
+        public SByte Promotion;
+    }
+
+    [MessagePackObject]
+    public class PKTResMovePiece //todo : 규칙을 서버에서 하면 beforex,y, after xy만 받을듯.
+    {
+        [Key(0)]
+        public ErrorCode Result;
+    }
+
+    [MessagePackObject]
+    public class PKTNTFMovePiece //todo : 규칙을 서버에서 하면 beforex,y, after xy만 받을듯.
+    {
+        [Key(0)]
+        public SByte LastMovedPiece;
+
+        [Key(1)]
+        public SByte BeforeMove_X;
+
+        [Key(2)]
+        public SByte BeforeMove_Y;
+
+        [Key(3)]
+        public SByte AfterMove_X;
+
+        [Key(4)]
+        public SByte AfterMove_Y;
+
+        [Key(5)]
+        public SByte Moves;
+
+        [Key(6)]
+        public SByte Castling;
+
+        [Key(7)]
+        public SByte Promotion;
+    }
 }

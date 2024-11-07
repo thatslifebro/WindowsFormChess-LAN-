@@ -28,18 +28,15 @@ namespace Sakk_Alkalmazás_2._0
 
         public ConnectionForm()
         {
-            InitPacketHandler();
-
             InitializeComponent();
 
             // 서버연결
             ConnectToServer();
+            InitPacketHandler();
 
             receiveThread = new Thread(new ThreadStart(Receive));
             receiveThread.IsBackground = true;
             receiveThread.Start();
-
-            lobby = new Lobby(socket);
         }
 
         void InitPacketHandler()
@@ -89,14 +86,33 @@ namespace Sakk_Alkalmazás_2._0
             {
                 IsLogin = true;
 
-                lobby.UpdateUserID(UserId);
-                if (!lobby.IsDisposed)
-                    lobby.ShowDialog();
-                
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(new Action(()=> {
+                        ShowLobbyDialog();
+                    }));
+                }
+                else
+                {
+                    ShowLobbyDialog();
+                }
             }
         }
 
-        
+        void ShowLobbyDialog()
+        {
+            if (lobby != null)
+            {
+                lobby.Show();
+            }
+            else
+            {
+                lobby = new Lobby(socket);
+                lobby.UpdateUserID(UserId);
+                lobby.InitLobbyPacketHandler(packetHandler);
+                lobby.Show();
+            }
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {

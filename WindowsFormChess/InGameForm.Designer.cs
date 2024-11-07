@@ -38,6 +38,7 @@ namespace Sakk_Alkalmazás_2._0
             this.ClientSize = new System.Drawing.Size(699, 570);
             this.Name = "InGameForm";
             this.Text = "Form1";
+            // close event
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InGameForm_FormClosing);
             this.ResumeLayout(false);
 

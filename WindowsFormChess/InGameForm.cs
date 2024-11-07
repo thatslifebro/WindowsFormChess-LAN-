@@ -1,11 +1,15 @@
-﻿using System;
+﻿using MessagePack;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net.Sockets;
+using System.Reflection.Emit;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -67,27 +71,24 @@ namespace Sakk_Alkalmazás_2._0
         public int[,] WhiteStaleArray = new int[8, 8];
         public int[,] BlackStaleArray = new int[8, 8];
 
-        public InGameForm(bool SingleGame)
+        Socket _socket;
+        private Thread receiveThread;
+        //Dictionary<EPacketID, Action<byte[]>> packetHandler = new Dictionary<EPacketID, Action<byte[]>>();
+
+
+        public InGameForm(bool SingleGame, Socket socket, bool amIWhite)
         {
+            _socket = socket;
+
             InitializeComponent();
             singleGame = SingleGame;
-            //its need for the Lan games
+
+            // recv thread
             if (!SingleGame)
             {
-                MessageReceiver.DoWork += MessageReceiver_DoWork;
-
-
-                try
-                {
-                    client = new TcpClient("localhost", 32452);
-                    sock = client.Client;
-                    MessageReceiver.RunWorkerAsync();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    Close();
-                }
+                if (amIWhite == false) OtherPlayerTurn = true;
+                //InitPacketHandler();
+                //StartReceiveThread();
             }
 
             //this is how every game will start, every pieces have an own number
@@ -146,6 +147,62 @@ namespace Sakk_Alkalmazás_2._0
             GetPiecesOnBoard();
             Pieces();
         }
+
+        public void UpdateInitLobbyPacketHandler(Dictionary<EPacketID, Action<byte[]>> packetHandler)
+        {
+            if (packetHandler.ContainsKey(EPacketID.ResMovePiece) == true)
+            {
+                packetHandler.Remove(EPacketID.ResMovePiece);
+            }
+            if (packetHandler.ContainsKey(EPacketID.NtfMovePiece) == true)
+            {
+                packetHandler.Remove(EPacketID.NtfMovePiece);
+            }
+
+            packetHandler.Add(EPacketID.ResMovePiece, ResMovePieceHandler);
+            packetHandler.Add(EPacketID.NtfMovePiece, NtfMovePieceHandler);
+        }
+
+        public void ResMovePieceHandler(byte[] body)
+        {
+            var resMovePiece = MessagePackSerializer.Deserialize<PKTResMovePiece>(body);
+            if (resMovePiece == null)
+            {
+                return;
+            }
+
+            if(resMovePiece.Result != ErrorCode.None)
+            {
+                OtherPlayerTurn = false;
+                WhiteTurn = !WhiteTurn;
+                return;
+            }
+            //TODO 지금은 여기서 규칙정해서 필요없음.
+        }
+
+        public void NtfMovePieceHandler (byte[] body)
+        {
+            var ntfMovePiece = MessagePackSerializer.Deserialize<PKTNTFMovePiece>(body);
+            if (ntfMovePiece == null)
+            {
+                return;
+            }
+
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() =>
+                {
+                    ReceiveMove(ntfMovePiece);
+                }));
+            }
+            else
+            {
+
+                ReceiveMove(ntfMovePiece);
+            }
+
+        }
+
         //in this method we are going to save every pieces in an array as number 1
         //and the empty cells will be 0
         public void GetPiecesOnBoard()
@@ -708,59 +765,66 @@ namespace Sakk_Alkalmazás_2._0
         //socket things
         private void MessageReceiver_DoWork(object sender, DoWorkEventArgs e)
         {
-            ReceiveMove();
+            
         }
         //and this is where we send datas using socket
         private void SendMove(int i, int j)
         {
             //we should send the moved piece, and its position, the new position, the checkmate counter and the value of castling, and promotionalue
-            byte[] datas = { (byte)LastMovedPiece, (byte)BeforeMove_I, (byte)BeforeMove_J, (byte)i, (byte)j, (byte)Moves, (byte)Castling, (byte)Promotionvalue };
-            sock.Send(datas);
-            MessageReceiver.DoWork += MessageReceiver_DoWork;
-            if (!MessageReceiver.IsBusy)
-            {
-                MessageReceiver.RunWorkerAsync();
-            }
+            //byte[] datas = { (byte)LastMovedPiece, (byte)BeforeMove_I, (byte)BeforeMove_J, (byte)i, (byte)j, (byte)Moves, (byte)Castling, (byte)Promotionvalue };
+            // TODO 이거 패킷으로 바꿔서 보내기.
+            _socket.Send(PacketToBytes.Make(EPacketID.ReqMovePiece,
+                MessagePackSerializer.Serialize(
+                    new PKTReqMovePiece
+                    {
+                        LastMovedPiece = (SByte)LastMovedPiece,
+                        BeforeMove_X = (SByte)BeforeMove_I,
+                        BeforeMove_Y = (SByte)BeforeMove_J,
+                        AfterMove_X = (SByte)i,
+                        AfterMove_Y = (SByte)j,
+                        Moves = (SByte)Moves,
+                        Castling = (SByte)Castling,
+                        Promotion = (SByte)Promotionvalue
+                    })));
+
             OtherPlayerTurn = true;
         }
         //this is where the other player got datas
-        private void ReceiveMove()
+        private void ReceiveMove(PKTNTFMovePiece data)
         {
-            byte[] buffer = new byte[8];
-            sock.Receive(buffer);
             //previously position have to be 0
-            tableClass.Table[buffer[1], buffer[2]] = 0;
+            tableClass.Table[data.BeforeMove_X, data.BeforeMove_Y] = 0;
             //new position with the piece
-            tableClass.Table[buffer[3], buffer[4]] = buffer[0];
+            tableClass.Table[data.AfterMove_X, data.AfterMove_Y] = data.LastMovedPiece;
             //castling
-            if (buffer[6] == 1)
+            if (data.Castling == 1)
             {
-                if (buffer[4] == 2)
+                if (data.AfterMove_Y == 2)
                 {
                     tableClass.Table[0, 3] = 02;
                     tableClass.Table[0, 0] = 0;
                 }
-                if (buffer[4] == 6)
+                if (data.AfterMove_Y == 6)
                 {
                     tableClass.Table[0, 5] = 02;
                     tableClass.Table[0, 7] = 0;
                 }
             }
-            if (buffer[6] == 2)
+            if (data.Castling == 2)
             {
-                if (buffer[4] == 2)
+                if (data.AfterMove_Y == 2)
                 {
                     tableClass.Table[7, 3] = 12; tableClass.Table[7, 0] = 0;
                 }
-                if (buffer[4] == 6)
+                if (data.AfterMove_Y == 6)
                 {
                     tableClass.Table[7, 5] = 12; tableClass.Table[7, 7] = 0;
                 }
             }
             //get promoted piece
-            if (buffer[7] > 0)
+            if (data.Promotion > 0)
             {
-                tableClass.Table[buffer[3], buffer[4]] = buffer[7];
+                tableClass.Table[data.AfterMove_X, data.AfterMove_Y] = data.Promotion;
             }
             //toggle turn
             WhiteTurn = !WhiteTurn;
@@ -770,7 +834,7 @@ namespace Sakk_Alkalmazás_2._0
             tableClass.MarkStale(TableBackground, tableClass.Table, WhiteStaleArray, BlackStaleArray);
             OtherPlayerTurn = false;
             //losing screen
-            if (buffer[5] == 0)
+            if (data.Moves == 0)
             {
                 if (WhiteTurn)
                 {
@@ -783,12 +847,24 @@ namespace Sakk_Alkalmazás_2._0
             }
         }
         //end connection
+
+        // 테이블 초기화 및 기물 초기화 및 시작상태로 변경함수
         private void InGameForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MessageReceiver.WorkerSupportsCancellation = true;
-            MessageReceiver.CancelAsync();
-            if (server != null)
-                server.Stop();
+            if(!singleGame)
+            {
+                _socket.Send(PacketToBytes.Make(EPacketID.ReqLeaveGameRoom));
+                e.Cancel = true;
+                this.Hide();
+                _socket.Send(PacketToBytes.Make(EPacketID.ReqGameRoomInfos));
+            }
+            else
+            {
+                Close();
+            }
         }
+
     }
+
+    
 }

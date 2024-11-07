@@ -11,10 +11,16 @@ namespace Sakk_Alkalmazás_2._0
         None = 0,
         AlreadyExistUser = 1001,
         FullRoom = 1002,
+        BodyDataError = 1003,
 
         AlreadyLoginUser = 2001,
         LoginBodySerializeError = 2002,
         NotLoginUser = 2003,
+
+        InvalidGameRoomID = 3001,
+
+        InvalidGameStatus = 4001,
+        NotYourTurn = 4002,
     }
 
 }

@@ -75,3 +75,4 @@ C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\Wi
 C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\obj\Debug\WindowsFormChess.csproj.CopyComplete
+C:\Users\ksy\Desktop\업무\SuperSocketLite\chessclient\WindowsFormChess-LAN-\WindowsFormChess\obj\Debug\Sakk_Alkalmazás_2._0.Popup.resources
